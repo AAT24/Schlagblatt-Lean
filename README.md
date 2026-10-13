@@ -1,28 +1,4 @@
-# Schlagblatt — Lean formalization
-
-Machine-checked core of the nitrogen optimization (companion to
-`docs/optimization_formulation.md`). We formalize the **abstract implication**,
-not the crop models: the pipeline supplies response maps `g = Y_F`,
-`h = (S-L)/100` with derivative-sign hypotheses (justified by the modeling /
-validation conditions V1–V2); Lean proves
-
-```
-sign hypotheses  ⟹  B'' < 0  ⟹  B concave  ⟹  N*_BZE ≤ N*_raw .
-```
-
-## Status
-
-| result | Lean object | state |
-|--------|-------------|-------|
-| Prop 1 (B'' < 0, strict) | `Bsecond_neg` | **proved** (nlinarith + linarith) |
-| Prop 1 (B'' ≤ 0)         | `Bsecond_nonpos` | **proved** |
-| Prop 1 (concavity)       | `B_concave` | proved **modulo** analytic bridge `hderiv2` |
-| Thm A3 (monotone N*)     | `nstar_monotone` | statement done, proof `sorry` |
-
-The two `Bsecond_*` lemmas are the mathematical heart and are self-contained.
-Open work: (a) fill the `HasDerivAt` chain so `deriv^[2] B = Bsecond R` instead
-of taking it as a hypothesis; (b) discharge `nstar_monotone` (interior-maximiser
-⟹ critical point; strict-concave ⟹ strictly-decreasing derivative).
+# Schlagblatt Lean formalization
 
 ## Build (needs the toolchain installed)
 
